@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const { createFeedback, getApprovedFeedback, removeFeedback, getAllfeedbacks, updateFeedbackApprovalStatus } = require('../controllers/feedbackController');
+const authMiddleware = require('../middleware/auth-middleware');
+router.post('/', createFeedback);
+router.get('/approved', getApprovedFeedback);
+router.delete('/:id',authMiddleware, removeFeedback);
+router.get('/getAll',authMiddleware,getAllfeedbacks);
+router.patch('/:id/approve',authMiddleware,updateFeedbackApprovalStatus);
+module.exports = router;
